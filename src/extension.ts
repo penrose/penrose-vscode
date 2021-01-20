@@ -1,27 +1,58 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
+import * as nearley from "nearley";
+import grammar from "./StyleParser";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+const tokenTypes = [
+  "class",
+  "interface",
+  "enum",
+  "struct",
+  "typeParameter",
+  "type",
+  "parameter",
+  "variable",
+  "property",
+  "enumMember",
+  "method",
+  "number",
+  "operator",
+  "string",
+  "comment",
+  "label",
+];
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "penrose-vs" is now active!');
+const tokenModifiers = ["static", "readonly", "declaration", "definition"];
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('penrose-vs.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from penrose-vs!');
-	});
-
-	context.subscriptions.push(disposable);
-}
+const legend = new vscode.SemanticTokensLegend(tokenTypes, tokenModifiers);
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
+
+const provider: vscode.DocumentSemanticTokensProvider = {
+  provideDocumentSemanticTokens(
+    document: vscode.TextDocument,
+    token: vscode.CancellationToken
+  ): vscode.ProviderResult<vscode.SemanticTokens> {
+    console.log("ye");
+    const tokensBuilder = new vscode.SemanticTokensBuilder(legend);
+    const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
+    const { results } = parser.feed(document.getText());
+    console.log(results);
+    return tokensBuilder.build();
+  },
+};
+
+const selector = { language: "penrose-style", scheme: "file" };
+
+export function activate(context: vscode.ExtensionContext) {
+  console.log("yee");
+  context.subscriptions.push(
+    vscode.languages.registerDocumentSemanticTokensProvider(
+      selector,
+      provider,
+      legend
+    )
+  );
+}

@@ -1,7 +1,8 @@
 {
   "name": "penrose-vs",
-  "displayName": "penrose-vs",
-  "description": "",
+  "displayName": "Penrose VSCode",
+  "publisher": "penrose-team",
+  "description": "Penrose languages bundle",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.52.0"

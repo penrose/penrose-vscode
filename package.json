@@ -7,7 +7,9 @@
     "vscode": "^1.52.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Snippets",
+    "Programming Languages"
   ],
   "activationEvents": [
     "onLanguage:penrose-style"
@@ -17,9 +19,13 @@
     "languages": [
       {
         "id": "penrose-style",
+        "aliases": [
+          "Penrose Style"
+        ],
         "extensions": [
           ".sty"
-        ]
+        ],
+        "configuration": "./style-language-configuration.json"
       }
     ]
   },

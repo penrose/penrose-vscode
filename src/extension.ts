@@ -30,28 +30,27 @@ const legend = new vscode.SemanticTokensLegend(tokenTypes, tokenModifiers);
 // this method is called when your extension is deactivated
 export function deactivate() {}
 
-const provider: vscode.DocumentSemanticTokensProvider = {
-  provideDocumentSemanticTokens(
+class DocumentSemanticTokensProvider
+  implements vscode.DocumentSemanticTokensProvider {
+  async provideDocumentSemanticTokens(
     document: vscode.TextDocument,
     token: vscode.CancellationToken
-  ): vscode.ProviderResult<vscode.SemanticTokens> {
-    console.log("ye");
+  ): Promise<vscode.SemanticTokens> {
     const tokensBuilder = new vscode.SemanticTokensBuilder(legend);
     const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
     const { results } = parser.feed(document.getText());
-    console.log(results);
     return tokensBuilder.build();
-  },
-};
+  }
+}
 
 const selector = { language: "penrose-style", scheme: "file" };
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log("yee");
+  console.log("activate");
   context.subscriptions.push(
     vscode.languages.registerDocumentSemanticTokensProvider(
       selector,
-      provider,
+      new DocumentSemanticTokensProvider(),
       legend
     )
   );

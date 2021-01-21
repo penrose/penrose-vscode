@@ -27,6 +27,13 @@
         ],
         "configuration": "./style-language-configuration.json"
       }
+    ],
+    "grammars": [
+      {
+        "language": "penrose-style",
+        "scopeName": "source.penrose-style",
+        "path": "./syntaxes/style.tmGrammar.json"
+      }
     ]
   },
   "scripts": {

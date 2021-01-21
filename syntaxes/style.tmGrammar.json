@@ -1,0 +1,52 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "penrose-style",
+  "scopeName": "source.penrose-style",
+  "fileTypes": [".sty"],
+  "patterns": [
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#keywords" },
+    { "include": "#comments" }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.penrose",
+          "match": "\\b(forall|where|with|delete|as|true|false|layer|encourage|ensure|override)\\b"
+        },
+        {
+          "name": "entity.other.attribute-name.penrose.layering",
+          "match": "\\b(above|below)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double",
+      "match": "\"(?:[^\n\\\"]|\\[\"\\ntbfr])*\""
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float",
+          "match": "[+-]?(?:\\d+(?:[.]\\d*)?(?:[eE][+-]?\\d+)?|[.]\\d+(?:[eE][+-]?\\d+)?)"
+        },
+        { "name": "constant.numeric.penrose.hole", "match": "\\?" }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.penrose",
+          "begin": "/\\*",
+          "end": "\\*/"
+        },
+        {
+          "name": "comment.line.penrose",
+          "match": "--.*?$"
+        }
+      ]
+    }
+  }
+}

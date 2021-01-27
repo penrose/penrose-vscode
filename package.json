@@ -1,6 +1,6 @@
 {
   "name": "penrose-vs",
-  "displayName": "Penrose VSCode",
+  "displayName": "Penrose",
   "publisher": "penrose-team",
   "description": "Penrose languages bundle",
   "version": "0.0.1",
@@ -16,6 +16,11 @@
     "onLanguage:penrose-style"
   ],
   "main": "./dist/extension.js",
+  "icon": "./icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/penrose/penrose-vscode.git"
+  },
   "contributes": {
     "languages": [
       {

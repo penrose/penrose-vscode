@@ -4,10 +4,9 @@
   "scopeName": "source.penrose-style",
   "fileTypes": [".sty"],
   "patterns": [
-    { "include": "#strings" },
     { "include": "#numbers" },
     { "include": "#keywords" },
-    { "include": "#comments" }
+    { "include": "source.penrose-common" }
   ],
   "repository": {
     "keywords": {
@@ -22,10 +21,6 @@
         }
       ]
     },
-    "strings": {
-      "name": "string.quoted.double",
-      "match": "\"(?:[^\n\\\"]|\\[\"\\ntbfr])*\""
-    },
     "numbers": {
       "patterns": [
         {
@@ -33,19 +28,6 @@
           "match": "[+-]?(?:\\d+(?:[.]\\d*)?(?:[eE][+-]?\\d+)?|[.]\\d+(?:[eE][+-]?\\d+)?)"
         },
         { "name": "constant.numeric.penrose.hole", "match": "\\?" }
-      ]
-    },
-    "comments": {
-      "patterns": [
-        {
-          "name": "comment.block.penrose",
-          "begin": "/\\*",
-          "end": "\\*/"
-        },
-        {
-          "name": "comment.line.penrose",
-          "match": "--.*?$"
-        }
       ]
     }
   }

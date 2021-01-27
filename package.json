@@ -26,14 +26,33 @@
         "extensions": [
           ".sty"
         ],
-        "configuration": "./style-language-configuration.json"
+        "configuration": "./languages/common-language-configuration.json"
+      },
+      {
+        "id": "penrose-domain",
+        "aliases": [
+          "Penrose Domain"
+        ],
+        "extensions": [
+          ".dsl"
+        ],
+        "configuration": "./languages/common-language-configuration.json"
       }
     ],
     "grammars": [
       {
+        "scopeName": "source.penrose-common",
+        "path": "./syntaxes/common.tmGrammar.json"
+      },
+      {
         "language": "penrose-style",
         "scopeName": "source.penrose-style",
         "path": "./syntaxes/style.tmGrammar.json"
+      },
+      {
+        "language": "penrose-domain",
+        "scopeName": "source.penrose-domain",
+        "path": "./syntaxes/domain.tmGrammar.json"
       }
     ]
   },

@@ -25,7 +25,7 @@
       "patterns": [
         {
           "name": "constant.numeric.float",
-          "match": "[+-]?(?:\\d+(?:[.]\\d*)?(?:[eE][+-]?\\d+)?|[.]\\d+(?:[eE][+-]?\\d+)?)"
+          "match": "\\b[+-]?(?:\\d+(?:[.]\\d*)?(?:[eE][+-]?\\d+)?|[.]\\d+(?:[eE][+-]?\\d+)?)\\b"
         },
         { "name": "constant.numeric.penrose.hole", "match": "\\?" }
       ]
